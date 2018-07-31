@@ -22,11 +22,10 @@ class Register extends Component {
     state = {
         user:'',
         passwd:'',
-        rePasswd:'',
+        repeatpwd:'',
         type:'genius',
     }
     handleRegister=()=>{
-        console.log("register....",this.state)
         this.props.register(this.state)
     }
     handlerChange=(key,value)=>{
@@ -47,7 +46,6 @@ class Register extends Component {
                     this.props.redirectTo ? <Redirect to={this.props.redirectTo} /> : null
                 }
                 <Logo></Logo>
-                {}
                 <WingBlank>
                 <List>
                     {
@@ -59,7 +57,7 @@ class Register extends Component {
                     <InputItem placeholder="请输入用密码" type="password"  onChange={(v)=>this.handlerChange("passwd",v)} >
                         密码
                     </InputItem>
-                    <InputItem placeholder="请输入用密码" type="password" onChange={(v)=>this.handlerChange("rePasswd",v)} >
+                    <InputItem placeholder="请输入用密码" type="password" onChange={(v)=>this.handlerChange("repeatpwd",v)} >
                         确认密码
                     </InputItem>
                     {

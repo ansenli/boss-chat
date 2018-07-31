@@ -16,6 +16,8 @@ const initState = {
 // reducer
 export function user(state=initState,action) {
     switch (action.type) {
+        case REGISTER_SUCCESS:
+			return {...state, msg:'',redirectTo:getRedirectPath(action.payload),isAuth:true,...action.payload}
         case ERROR_MSG:
             return {...state,isAuth:false,msg:action.msg}
         case LOGIN_SUCESS:
@@ -51,7 +53,6 @@ function registerSuccess(data) {
 
 // 异步执行逻辑
 export function loadData(userinfo){
-    console.log("userinfo....",userinfo)
     return {
         type:LOAD_DATA,
         payload:userinfo
@@ -64,6 +65,7 @@ export function login({user,passwd}) {
     }
     return dispatch =>{
         axios.post('/user/login',{user,passwd})
+           
             .then(res =>{
                 if(res.status ===200&& res.data.code === 0){
                     dispatch(loginSuccess(res.data.data))
@@ -81,7 +83,6 @@ export function register({user,passwd,repeatpwd,type}) {
     if(passwd !== repeatpwd){
         return errorMsg('密码和确认密码不同')
     }
-    console.log("1111")
     return dispatch =>{
         axios.post('/user/register',{user,passwd,type})
             .then(res=>{

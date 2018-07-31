@@ -23,7 +23,6 @@ class AuthRoute extends Component {
         .then(res=>{
             if(res.status == 200){
                 if(res.data.code == 0){
-                    console.log("有登录信息")
                     this.props.loadData(res.data.data)
                 }
             }else {
