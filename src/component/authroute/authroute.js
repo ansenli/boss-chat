@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { loadData } from '../../redux/user.redux'
@@ -15,16 +15,12 @@ class AuthRoute extends Component {
     const pathname = this.props.location.pathname;
     if(publicList.indexOf(pathname)>-1){
         return null;
-    }else{
-        this.props.history.push('/login')
     }
     // 获取用户信息
     axios.get('/user/info')
         .then(res=>{
-            if(res.status == 200){
-                if(res.data.code == 0){
-                    this.props.loadData(res.data.data)
-                }
+            if(res.status === 200 && res.data.code === 0){
+                this.props.loadData(res.data.data) 
             }else {
                 this.props.history.push('/login')
             }

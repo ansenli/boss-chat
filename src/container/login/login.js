@@ -1,5 +1,5 @@
 import React, { Component ,Fragment} from 'react';
-import { Flex, 
+import { 
     WhiteSpace,
     WingBlank,
     Button,
@@ -20,7 +20,6 @@ class Login extends Component {
     state={
         user:'',
         passwd:'',
-
     }
     handlerChange =(key,value)=>{
         this.setState({

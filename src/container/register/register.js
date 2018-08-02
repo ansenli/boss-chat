@@ -1,5 +1,5 @@
 import React, { Component ,Fragment} from 'react';
-import { Flex, 
+import {  
     WhiteSpace,
     WingBlank,
     Button,
@@ -63,7 +63,7 @@ class Register extends Component {
                     {
                         dataList.map(item=>{
                             return (
-                                <RadioItem key={item.type} checked={type == item.type} onChange={() => this.handlerChange("type",item.type)}>
+                                <RadioItem key={item.type} checked={type === item.type} onChange={() => this.handlerChange("type",item.type)}>
                                     {item.label}
                                 </RadioItem>
                             )
