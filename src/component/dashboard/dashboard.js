@@ -6,6 +6,7 @@ import NavLinkBar from '../navlink/navlink'
 import Boss from '../../component/boss/boss'
 import Genius from '../../component/genius/genius'
 
+
 function Msg() {
     return <h2>消息列表页面</h2>
 }
@@ -22,8 +23,6 @@ class Dashboard extends Component{
     
 
     render(){
-       
-       
         const {pathname} = this.props.location
         const user = this.props.user
         const navList =[
@@ -33,7 +32,7 @@ class Dashboard extends Component{
                 icon:'boss',
                 title:'牛人列表',
                 component:Boss,
-                hide:user.type = 'genius'
+                hide:user.type == 'genius'
             },
             {
                 path:'/genius',
@@ -41,7 +40,7 @@ class Dashboard extends Component{
                 icon:'job',
                 title:'BOSS列表',
                 component:Genius,
-                hide:user.type = 'boss'
+                hide:user.type == 'boss'
             },
             {
                 path:'/me',

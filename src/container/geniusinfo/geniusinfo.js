@@ -21,8 +21,6 @@ class GeniusInfo extends Component{
     render(){
         const path = this.props.location.pathname
         const redirect = this.props.redirectTo
-        console.log("path",path)
-        console.log("redirect",redirect)
         return (
             <div>
                 {redirect&&redirect!==path? <Redirect to={this.props.redirectTo}></Redirect> :null}

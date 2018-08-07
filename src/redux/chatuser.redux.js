@@ -18,8 +18,7 @@ function userList(data) {
     return {
         type:USER_LIST,
         payload:data
-    }
-    
+    }    
 }
 
 export function getUserList(type) {
