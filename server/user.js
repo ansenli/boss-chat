@@ -6,11 +6,12 @@ const model = require('./model')
 const User = model.getModel('user')
 
 const _filter = {'passwd':0,'__v':0}
-
+// 获取用户列表
 Router.get('/list',function (req,res) {
-    //User.remove({},function(e,d){}) 
-    User.find({},function name(err,doc) {
-        return res.json(doc)
+    // User.remove({},function(e,d){}) 
+    const { type } = req.query
+    User.find({type},function name(err,doc) {
+        return res.json({code:0,data:doc})
     })
 
 })
@@ -19,6 +20,7 @@ Router.post('/update',function (req,res) {
     if(!userid){
         return json.dumps({code:1})
     }
+    // post 的参数用body获取，get的参数用query获取
     const body = req.body
     User.findByIdAndUpdate(userid,body,function (err,doc) {
         const data = Object.assign({},{
