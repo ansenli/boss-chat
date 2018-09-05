@@ -4,6 +4,7 @@ const utils = require('utility')
 const Router = express.Router()
 const model = require('./model')
 const User = model.getModel('user')
+const Chat = model.getModel('chat')
 
 const _filter = {'passwd':0,'__v':0}
 // 获取用户列表
@@ -15,6 +16,19 @@ Router.get('/list',function (req,res) {
     })
 
 })
+// 获取聊天信息列表
+
+Router.get('/getmsglist',function (req,res) {
+    Chat.find({},function (err,doc) {
+        if(!err){
+            return res.json({
+                code:0,
+                msgs:doc
+            })
+        }
+    })
+})
+
 Router.post('/update',function (req,res) {
     const userid = req.cookies.userid
     if(!userid){
