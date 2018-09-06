@@ -7,11 +7,9 @@ import NavLinkBar from '../navlink/navlink'
 import Boss from '../../component/boss/boss'
 import Genius from '../../component/genius/genius'
 import User from '../../component/user/user'
+import Msg from '../msg/msg'
 
 
-function Msg() {
-    return <h2>消息列表页面</h2>
-}
 
 // function User(){
 //     return <h2>个人中心页面</h2>

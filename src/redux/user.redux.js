@@ -51,7 +51,6 @@ export function logoutSubmit() {
     return { type:LOGOUT }
 }
 export function loadData(userinfo){
-    console.log("userinfo.....",userinfo)
     return {
         type:LOAD_DATA,
         payload:userinfo
