@@ -13,10 +13,8 @@ const io = require('socket.io')(server)
 io.on("connection",function (socket) {
     console.log("user login")
     socket.on('sendmsg',function (data) {
-
         const { from ,to ,msg} = data;
         const chatId = [from,to].sort().join("_")
-
         Chat.create({chatId,from,to,content:msg},function (err,doc) {
             // doc 和doc._doc 结果值是一样的
             io.emit('recvmsg',Object.assign({},doc._doc))
