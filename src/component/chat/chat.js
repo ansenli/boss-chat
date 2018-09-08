@@ -1,14 +1,14 @@
 import React, { Component,Fragment } from 'react';
 import {List, InputItem, NavBar, Icon, Grid} from 'antd-mobile'
 import { connect } from 'react-redux'
-import { getMsgList ,sendMsg ,recvMsg }  from '../../redux/chat.redux'
+import { getMsgList ,sendMsg ,recvMsg ,readMsg }  from '../../redux/chat.redux'
 import {getChatId} from '../../util'
 import  io from 'socket.io-client'
 // 因为本地是3000，后端是9093要跨越跨越所以要用url，
 const socket = io('ws://localhost:9093')
 @connect(
     state=>state,
-    { getMsgList,sendMsg,recvMsg}
+    { getMsgList,sendMsg,recvMsg,readMsg}
 )
 class Chat extends Component{
     constructor(props) {
@@ -24,7 +24,13 @@ class Chat extends Component{
             this.props.getMsgList()
             this.props.recvMsg()
         }
+        
     }
+    componentWillUnmount() {
+        const to = this.props.match.params.user
+        this.props.readMsg(to)
+    }
+    
     fixCarousel(){
         setTimeout(function(){
 			window.dispatchEvent(new Event('resize'))
