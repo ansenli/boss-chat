@@ -11,15 +11,12 @@ const socket = io('ws://localhost:9093')
     { getMsgList,sendMsg,recvMsg,readMsg}
 )
 class Chat extends Component{
-    constructor(props) {
-        super(props)
-        this.state = {
-            text:'',msg:[],
-            showEmoji:false,
-        }
-    }
     componentDidMount() {
-       
+        this.state = {
+            text:'',
+            msg:[],
+            showEmoji:false
+        }
         if(!this.props.chat.chatmsg.length){
             this.props.getMsgList()
             this.props.recvMsg()
