@@ -11,17 +11,21 @@ const socket = io('ws://localhost:9093')
     { getMsgList,sendMsg,recvMsg,readMsg}
 )
 class Chat extends Component{
-    componentDidMount() {
+    constructor(props) {
+        super(props)
         this.state = {
             text:'',
             msg:[],
             showEmoji:false
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+    
+    componentDidMount() {
         if(!this.props.chat.chatmsg.length){
             this.props.getMsgList()
             this.props.recvMsg()
-        }
-        
+        } 
     }
     componentWillUnmount() {
         const to = this.props.match.params.user
@@ -33,9 +37,7 @@ class Chat extends Component{
 			window.dispatchEvent(new Event('resize'))
 		},0)
     }
-    handleSubmit=()=>{
-        // socket.emit('sendmsg',{text:this.state.text})
-        
+    handleSubmit(){
         const msg = this.state.text;
         const from = this.props.user._id;
         const to = this.props.match.params.user;
@@ -69,7 +71,6 @@ class Chat extends Component{
                     }}
                     >{users[userId].name}</NavBar>
                     {
-
                         chatmsgs.map(v =>{
                             const avatar = require(`../img/${users[v.from].avatar}.png`)
                             return v.from == userId ? (
@@ -112,11 +113,9 @@ class Chat extends Component{
                                         😄
                                         </span>
                                         <span onClick={this.handleSubmit} >发送</span>
-
                                     </div>
                                 }  
                             >
-                            信息
                             </InputItem>
                         </List>
                         {

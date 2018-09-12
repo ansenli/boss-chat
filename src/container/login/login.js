@@ -17,19 +17,27 @@ import Logo from '../../component/logo/logo'
     {login}
 )
 class Login extends Component {
-    state={
-        user:'',
-        passwd:'',
+    constructor(props) {
+        super(props)
+        this.state={
+            user:'',
+            passwd:'',
+        }
+        this.handlerChange = this.handlerChange.bind(this)
+        this.login = this.login.bind(this)
+        this.register = this.register.bind(this)
     }
-    handlerChange =(key,value)=>{
+    
+    
+    handlerChange (key,value){
         this.setState({
             [key]:value
         })
     }
-    login = ()=>{
+    login(){
         this.props.login(this.state)
     }
-    register=()=>{
+    register(){
         this.props.history.push('/register')
     }
     render(){

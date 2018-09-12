@@ -11,16 +11,21 @@ import { Redirect } from 'react-router-dom'
 )
 
 class User extends Component{
+	constructor(props) {
+		super(props);
+		this.logout = this.logout.bind(this)
+	}
+	
 
-    logout= ()=>{
+    logout(){
         const alert = Modal.alert
 		alert('注销', '确认退出登录吗???', [
-		      { text: '取消', onPress: () => console.log('cancel') },
-		      { text: '确认', onPress: () => {
-		      	browserCookie.erase('userid')
-		      	this.props.logoutSubmit()
-		      }}
-		    ])
+			{ text: '取消', onPress: () => console.log('cancel') },
+			{ text: '确认', onPress: () => {
+			browserCookie.erase('userid')
+			this.props.logoutSubmit()
+			}}
+		])
     }
     render(){
         const props = this.props

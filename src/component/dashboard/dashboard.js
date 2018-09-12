@@ -2,19 +2,15 @@ import React, { Component,Fragment } from 'react'
 import { connect } from 'react-redux'
 import {NavBar} from 'antd-mobile'
 import {Switch,Route} from 'react-router-dom'
-import { getMsgList ,sendMsg ,recvMsg }  from '../../redux/chat.redux'
+import { getMsgList ,recvMsg }  from '../../redux/chat.redux'
 import NavLinkBar from '../navlink/navlink'
 import Boss from '../../component/boss/boss'
 import Genius from '../../component/genius/genius'
 import User from '../../component/user/user'
 import Msg from '../msg/msg'
+import { withRouter } from 'react-router-dom'
 
-
-
-// function User(){
-//     return <h2>个人中心页面</h2>
-// }
-
+@withRouter
 @connect(
     state=>state,
     {getMsgList,recvMsg}
@@ -67,11 +63,17 @@ class Dashboard extends Component{
         // 这里有个bug，看后面是否要修复
         return (
             <Fragment> 
-                <NavBar className='fixd-header' mode='dard'>
-                    { 
-                        navList.find(item=>item.path==pathname).title 
-                    }
-                </NavBar>
+               
+                {
+                    pathname != '/' ? (
+                        <NavBar className='fixd-header' mode='dard'>
+                            {
+                                navList.find(item=>item.path==pathname).title || this.props.history.push('/login')
+                            }
+                        </NavBar>
+                    ):this.props.history.push('/login')
+                }
+
                 <div style={{marginTop: 45}}>
                     <Switch>
                         {

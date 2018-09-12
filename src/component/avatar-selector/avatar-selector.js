@@ -4,12 +4,10 @@ import PropTypes from 'prop-types'
 import './avatar-selector.css'
 
 class AvatarSelector extends Component{
-
     static propTypes ={
         selectAvatar:PropTypes.func.isRequired
     }
     state={
-
     }
     render(){
         const avatarList = 'boy,girl,man,woman,bull,chick,crab,hedgehog,hippopotamus,koala,lemur,pig,tiger,whale,zebra'

@@ -10,13 +10,19 @@ import { update } from '../../redux/user.redux'
     {update}
 )
 class BossInfo extends Component{
-    state={
-        title:'',
-        desc:'',
-        company:'',
-        money:''
+    constructor(props) {
+        super(props);
+        this.state={
+            title:'',
+            desc:'',
+            company:'',
+            money:''
+        }
+        this.onChange = this.onChange.bind(this)
     }
-    onChange=(key,val)=>{
+    
+    
+    onChange(key,val){
         this.setState({
             [key]:val
         })

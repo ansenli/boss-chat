@@ -19,16 +19,23 @@ import Logo from '../../component/logo/logo'
 )
 
 class Register extends Component {
-    state = {
-        user:'',
-        passwd:'',
-        repeatpwd:'',
-        type:'genius',
+    constructor(props) {
+        super(props);
+        this.state = {
+            user:'',
+            passwd:'',
+            repeatpwd:'',
+            type:'genius',
+        }
+        this.handleRegister = this.handleRegister.bind(this)
+        this.handlerChange = this.handlerChange.bind(this)
     }
-    handleRegister=()=>{
+    
+    
+    handleRegister(){
         this.props.register(this.state)
     }
-    handlerChange=(key,value)=>{
+    handlerChange(key,value){
         this.setState({
             [key]:value,
         })

@@ -8,6 +8,11 @@ class UserCard extends Component{
     static propTypes ={
         userlist:PropTypes.array.isRequired
     }
+    constructor(props) {
+        super(props);
+        this.handleClick =this.handleClick.bind(this)
+    }
+    
 
     handleClick(v){
 		this.props.history.push(`/chat/${v._id}`)

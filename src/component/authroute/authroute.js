@@ -3,7 +3,7 @@ import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { loadData } from '../../redux/user.redux'
 import { connect } from 'react-redux'
-// withRouter 可以是此组
+
 @withRouter
 @connect(
     null,
@@ -25,11 +25,10 @@ class AuthRoute extends Component {
                 this.props.history.push('/login')
             }
         })
-        // 是否登录
-        // 现在的url地址 login 是不需要跳转的
-
-        // 用户的type 身份是牛人 还是boss
-        // 用户是否完善信息
+        /* 是否登录
+        现在的url地址 login 是不需要跳转的
+        用户的type 身份是牛人 还是boss
+        用户是否完善信息 */
     };
     render(){
         return null;

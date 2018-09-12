@@ -9,11 +9,17 @@ import {update} from '../../redux/user.redux'
     {update}
 )
 class GeniusInfo extends Component{
-    state={
-        title:'',
-        desc:''
+    constructor(props) {
+        super(props);
+        this.state={
+            title:'',
+            desc:''
+        }
+        this.onChange = this.onChange.bind(this)
     }
-    onChange=(key,val)=>{
+    
+    
+    onChange(key,val){
         this.setState({
             [key]:val
         })
