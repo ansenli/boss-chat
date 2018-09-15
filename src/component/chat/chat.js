@@ -3,9 +3,9 @@ import {List, InputItem, NavBar, Icon, Grid} from 'antd-mobile'
 import { connect } from 'react-redux'
 import { getMsgList ,sendMsg ,recvMsg ,readMsg }  from '../../redux/chat.redux'
 import {getChatId} from '../../util'
-import  io from 'socket.io-client'
+//import  io from 'socket.io-client'
 // 因为本地是3000，后端是9093要跨越跨越所以要用url，
-const socket = io('ws://localhost:9093')
+//const socket = io('ws://localhost:9093')
 @connect(
     state=>state,
     { getMsgList,sendMsg,recvMsg,readMsg}
@@ -55,7 +55,7 @@ class Chat extends Component{
         const userId = this.props.match.params.user
         const {users} = this.props.chat
         const chatId = getChatId(userId,this.props.user._id)
-        const chatmsgs = chatmsg.filter(v=>v.chatId == chatId)
+        const chatmsgs = chatmsg.filter(v=>v.chatId === chatId)
 
         if(!users[userId]){
             return null
@@ -73,7 +73,7 @@ class Chat extends Component{
                     {
                         chatmsgs.map(v =>{
                             const avatar = require(`../img/${users[v.from].avatar}.png`)
-                            return v.from == userId ? (
+                            return v.from === userId ? (
                                 <List key ={ v._id }>
                                     <Item 
                                     thumb ={avatar}
@@ -82,7 +82,7 @@ class Chat extends Component{
                             ):(
                                 <List key ={ v._id }>
                                     <Item
-                                        extra = {<img src={avatar} />}
+                                        extra = {<img alt="" src={avatar} />}
                                         className ="chat-me"
                                     >{v.content} </Item>
                                 </List>
@@ -100,20 +100,22 @@ class Chat extends Component{
                                     })
                                 }}
                                 extra={
-                                    <div>
-                                        <span
-                                            style={{marginRight:15}}
-                                            onClick = {()=>{
-                                                this.setState({
-                                                    showEmoji:!this.state.showEmoji
-                                                })
-                                                this.fixCarousel()
-                                            }}
-                                        >
-                                        😄
-                                        </span>
-                                        <span onClick={this.handleSubmit} >发送</span>
-                                    </div>
+                                    
+                                        <div>
+                                            <span
+                                                style={{marginRight:15}}
+                                                onClick = {()=>{
+                                                    this.setState({
+                                                        showEmoji:!this.state.showEmoji
+                                                    })
+                                                    this.fixCarousel()
+                                                }}
+                                            >
+                                            😄
+                                            </span>
+                                            <span onClick={this.handleSubmit} >发送</span>
+                                        </div>
+                                    
                                 }  
                             >
                             </InputItem>

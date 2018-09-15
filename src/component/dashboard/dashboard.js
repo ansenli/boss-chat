@@ -36,7 +36,7 @@ class Dashboard extends Component{
                 icon:'boss',
                 title:'牛人列表',
                 component:Boss,
-                hide:user.type == 'genius'
+                hide:user.type === 'genius'
             },
             {
                 path:'/genius',
@@ -44,7 +44,7 @@ class Dashboard extends Component{
                 icon:'job',
                 title:'BOSS列表',
                 component:Genius,
-                hide:user.type == 'boss'
+                hide:user.type === 'boss'
             },
             {
                 path:'/msg',
@@ -65,10 +65,10 @@ class Dashboard extends Component{
             <Fragment> 
                
                 {
-                    pathname != '/' ? (
+                    pathname !=='/' ? (
                         <NavBar className='fixd-header' mode='dard'>
                             {
-                                navList.find(item=>item.path==pathname).title || this.props.history.push('/login')
+                                navList.find(item=>item.path===pathname).title || this.props.history.push('/login')
                             }
                         </NavBar>
                     ):this.props.history.push('/login')

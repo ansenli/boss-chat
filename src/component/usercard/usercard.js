@@ -1,7 +1,8 @@
-import React, { Component,PureComponent,Fragment } from 'react'
+import React, { Component,Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Card,WhiteSpace,WingBlank } from 'antd-mobile'
 import {withRouter} from 'react-router-dom'
+import styles from './usercard.less'
 
 @withRouter
 class UserCard extends Component{
@@ -38,7 +39,7 @@ class UserCard extends Component{
                                 ></Header>
                                 <Body>
                                     {
-                                        v.type == 'boss' ? <div>公司:{v.company}</div> :null
+                                        v.type === 'boss' ? <div>公司:{v.company}</div> :null
                                     }
                                     {
                                         v.desc.split('/n').map(d=>(
@@ -46,7 +47,7 @@ class UserCard extends Component{
                                         ))
                                     }
                                     {
-                                        v.type == 'boss' ? <div>薪资：{v.money}</div> :null
+                                        v.type === 'boss' ? <div className={styles.usercard} >薪资：{v.money}</div> :null
                                     }
                                 </Body>
                             </Card> ):null

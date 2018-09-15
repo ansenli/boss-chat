@@ -1,6 +1,6 @@
 import React, { Component,Fragment } from 'react'
 import { connect } from 'react-redux';
-import { Result,List,WhiteSpace,Modal, WingBlank,Button } from 'antd-mobile'
+import { Result,List,WhiteSpace,Modal} from 'antd-mobile'
 import browserCookie from 'browser-cookies'
 import { logoutSubmit } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
@@ -36,7 +36,7 @@ class User extends Component{
                 <Result
 					img={<img src={require(`../img/${props.avatar}.png`)} style={{width:50}} alt="" />}
 					title={props.user}
-					message={props.type=='boss'?props.company:null}
+					message={props.type==='boss'?props.company:null}
 				/>
                 <List renderHeader={()=>'简介'}>
 					<Item
@@ -54,7 +54,7 @@ class User extends Component{
 				</List>
                 
             </Fragment> 
-        ):(props.redirectTo == '/login' ? <Redirect to={props.redirectTo} />:null)
+        ):(props.redirectTo === '/login' ? <Redirect to={props.redirectTo} />:null)
 
     }
 }

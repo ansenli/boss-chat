@@ -44,7 +44,7 @@ class Login extends Component {
         return (
             <Fragment>
                 {
-                    (this.props.redirectTo&&this.props.redirectTo!='/login')? <Redirect to={this.props.redirectTo} /> : null
+                    (this.props.redirectTo&&this.props.redirectTo!=='/login')? <Redirect to={this.props.redirectTo} /> : null
                 }
                 <Logo></Logo>
                 <List>

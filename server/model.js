@@ -7,7 +7,8 @@ mongoose.connect(DB_URL, {useNewUrlParser:true}, function(err){
 　　if(err){
 　　　　console.log('Connection Error:' + err)
 　　}else{
-　　　　console.log('Connection success!') }
+　　　　console.log('Connection success!') 
+	}
 })
 const models = {
     user:{
