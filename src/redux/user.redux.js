@@ -58,15 +58,13 @@ export function loadData(userinfo){
 }
 
 export function update(data) {
-    return dispatch=>{
-        axios.post('/user/update',data)
-            .then(res=>{
-                if(res.status===200&&res.data.code ===0){
-                    dispatch(authSuccess(res.data.data))
-                }else{
-                    dispatch(errorMsg(res.data.msg))
-                }
-            })
+    return async dispatch=>{
+        const res =  await axios.post('/user/update',data)
+        if(res.status===200&&res.data.code ===0){
+            dispatch(authSuccess(res.data.data))
+        }else{
+            dispatch(errorMsg(res.data.msg))
+        }
     }
 }
 
@@ -74,16 +72,14 @@ export function login({user,passwd}) {
     if(!user || !passwd){
         return errorMsg('请输入用户名密码')
     }
-    return dispatch =>{
-        axios.post('/user/login',{user,passwd})
-           
-            .then(res =>{
-                if(res.status ===200&& res.data.code === 0){
-                    dispatch(authSuccess(res.data.data))
-                }else{
-                    dispatch(errorMsg(res.data.msg))
-                }
-            })
+    return async dispatch =>{
+        const res = await axios.post('/user/login',{user,passwd})
+        if(res.status ===200&& res.data.code === 0){
+            dispatch(authSuccess(res.data.data))
+        }else{
+            dispatch(errorMsg(res.data.msg))
+        }
+
     }
 }
 
@@ -94,14 +90,12 @@ export function register({user,passwd,repeatpwd,type}) {
     if(passwd !== repeatpwd){
         return errorMsg('密码和确认密码不同')
     }
-    return dispatch =>{
-        axios.post('/user/register',{user,passwd,type})
-            .then(res=>{
-                if(res.status===200 && res.data.code === 0){
-                    dispatch(authSuccess({user,passwd,type}))
-                }else{
-                    dispatch(errorMsg(res.data.msg))
-                }
-            })
+    return async dispatch=>{
+        const res = await  axios.post('/user/register',{user,passwd,type})
+        if(res.status===200 && res.data.code === 0){
+            dispatch(authSuccess({user,passwd,type}))
+        }else{
+            dispatch(errorMsg(res.data.msg))
+        }
     }
 }
