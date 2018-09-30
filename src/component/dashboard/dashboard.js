@@ -9,6 +9,7 @@ import Genius from '../../component/genius/genius'
 import User from '../../component/user/user'
 import Msg from '../msg/msg'
 import { withRouter } from 'react-router-dom'
+import './dashboard.less'
 
 @withRouter
 @connect(

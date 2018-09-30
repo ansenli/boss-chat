@@ -13,7 +13,9 @@ import GeniusInfo from './container/geniusinfo/geniusinfo'
 import Dashboard from './component/dashboard/dashboard'
 import Chat from './component/chat/chat'
 import reducers from './reducer'
+
 import './config'
+import 'antd-mobile/dist/antd-mobile.css'; 
 import './index.css'
 
 const store = createStore(reducers, compose(

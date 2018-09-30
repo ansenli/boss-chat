@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getUserList} from '../../redux/chatuser.redux'
 import UserCard from '../usercard/usercard'
+import './geniu.less'
 @connect(
 	state=>state.chatuser,
 	{getUserList}

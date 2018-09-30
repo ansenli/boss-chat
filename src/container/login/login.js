@@ -12,6 +12,7 @@ import { Redirect } from 'react-router-dom'
 import { login } from '../../redux/user.redux'
  
 import Logo from '../../component/logo/logo'
+import './login.less'
 @connect( 
     state =>state.user,
     {login}

@@ -91,7 +91,7 @@ export function register({user,passwd,repeatpwd,type}) {
         return errorMsg('密码和确认密码不同')
     }
     return async dispatch=>{
-        const res = await  axios.post('/user/register',{user,passwd,type})
+        const res = await axios.post('/user/register',{user,passwd,type})
         if(res.status===200 && res.data.code === 0){
             dispatch(authSuccess({user,passwd,type}))
         }else{

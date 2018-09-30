@@ -4,7 +4,7 @@ import { Result,List,WhiteSpace,Modal} from 'antd-mobile'
 import browserCookie from 'browser-cookies'
 import { logoutSubmit } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
-
+import './user.less'
 @connect(
     state=>state.user,
     { logoutSubmit }

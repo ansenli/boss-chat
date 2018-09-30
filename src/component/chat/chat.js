@@ -3,6 +3,7 @@ import {List, InputItem, NavBar, Icon, Grid} from 'antd-mobile'
 import { connect } from 'react-redux'
 import { getMsgList ,sendMsg ,recvMsg ,readMsg }  from '../../redux/chat.redux'
 import {getChatId} from '../../util'
+import  './chat.less'
 //import  io from 'socket.io-client'
 // 因为本地是3000，后端是9093要跨越跨越所以要用url，
 //const socket = io('ws://localhost:9093')
@@ -63,32 +64,36 @@ class Chat extends Component{
         return (
             <Fragment>
                 <div id="chat-page">
-                    <NavBar
+                    <NavBar className="header_title"
                    icon={<Icon type="left" />}
                     onLeftClick ={()=>{
                         this.props.history.goBack()
                        
                     }}
-                    >{users[userId].name}</NavBar>
-                    {
-                        chatmsgs.map(v =>{
-                            const avatar = require(`../img/${users[v.from].avatar}.png`)
-                            return v.from === userId ? (
-                                <List key ={ v._id }>
-                                    <Item 
-                                    thumb ={avatar}
-                                    >{v.content} </Item>
-                                </List>
-                            ):(
-                                <List key ={ v._id }>
-                                    <Item
-                                        extra = {<img alt="" src={avatar} />}
-                                        className ="chat-me"
-                                    >{v.content} </Item>
-                                </List>
-                            )
-                        })
-                    }
+                    >{users[userId].name}
+                    </NavBar>
+                    <div className="msg_content">
+                        {
+                            chatmsgs.map(v =>{
+                                const avatar = require(`../img/${users[v.from].avatar}.png`)
+                                return v.from === userId ? (
+                                    <List key ={ v._id }>
+                                        <Item 
+                                        thumb ={avatar}
+                                        >{v.content} </Item>
+                                    </List>
+                                ):(
+                                    <List key ={ v._id } >
+                                        <Item
+                                            extra = {<img alt="" src={avatar} />}
+                                            className ="chat-me"
+                                        >{v.content} </Item>
+                                    </List>
+                                )
+                            })
+                        }
+                    </div>
+                    
                     <div className="stick-footer">
                         <List >
                             <InputItem
@@ -101,7 +106,7 @@ class Chat extends Component{
                                 }}
                                 extra={
                                     
-                                        <div>
+                                        <span>
                                             <span
                                                 style={{marginRight:15}}
                                                 onClick = {()=>{
@@ -114,7 +119,7 @@ class Chat extends Component{
                                             😄
                                             </span>
                                             <span onClick={this.handleSubmit} >发送</span>
-                                        </div>
+                                        </span>
                                     
                                 }  
                             >
